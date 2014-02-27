@@ -31,4 +31,4 @@ $('#call_me_pink').click(function() {
 // WRITE CODE HERE
 $('#greet_me').click(function() {
 	alert("Hey, " + $('#my_name').val());
-})
+});
