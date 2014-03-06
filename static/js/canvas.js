@@ -15,9 +15,31 @@ $(document).ready(function() {
   	context.strokeStyle = 'pink';
   });
 
-  $('#p1').click(function() {
+  $('#p2').click(function() {
   	context.strokeRect(100,10,30,30);
   	context.strokeStyle = 'pink';
+  });
+
+  $('#p3').click(function() {
+  	context.beginPath();
+  	context.arc(200,300,80,0,Math.PI);
+  	context.closePath();
+  	context.stroke();
+  });
+
+  $('#p4').click(function() {
+  	context.beginPath();
+  	context.arc(300,400,80,0,2*Math.PI);
+  	context.closePath();
+  	context.stroke();
+  });
+
+  $('#p5').click(function() {
+  	context.beginPath();
+  	context.moveTo(100,50);
+  	context.lineTo(200,400);
+  	context.closePath();
+  	context.stroke();
   });
 
 
