@@ -6,7 +6,7 @@ $(document).ready(function() {
   var height = canvas.height;
 
   // PUT STUFF HERE
-  var numBalls = 1000;
+  var numBalls = 10;
   var balls = [];
   for (var z = 0; z<numBalls; z++) {
     var ball = {
@@ -64,8 +64,16 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-
+    var newball = {
+      xCoor:x,
+      yCoor:y,
+      radius:15,
+      vx:10*Math.random(),
+      vy:15*Math.random()
+    };
+    balls.push(newball);
+    numBalls++;
   });
-
+  
   updateGame();
 });
