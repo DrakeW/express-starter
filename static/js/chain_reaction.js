@@ -22,11 +22,32 @@ $(document).ready(function() {
 
   var reactions = [];
 
-
-
   // Run an interation of the game
   var updateGame = function() {
     // PUT STUFF HERE
+    for (var b = 0; b<balls.length; b++) {
+      var collided = false;
+      for (var a = 0; a<reactions.length; a++) {
+        var xdiff = Math.abs(reactions[a].xCoor - balls[b].xCoor);
+        var ydiff = Math.abs(reactions[a].yCoor - balls[b].yCoor);
+        var dist = Math.sqrt(xdiff*xdiff + ydiff*ydiff);
+        if (dist < reactions[a].radius + balls[b].radius) {
+          collided = true;
+        }
+      }
+      if (collided == true) {
+        var gReac = {
+          xCoor: balls[b].xCoor,
+          yCoor: balls[b].yCoor,
+          radius: 1
+        };
+        reactions.push(gReac);
+        balls.splice(b, 1);
+        b--;
+        numBalls--;
+      }
+    }
+
     for (var j = 0; j<numBalls; j++) {
       balls[j].xCoor = balls[j].xCoor + balls[j].vx;
       balls[j].yCoor = balls[j].yCoor + balls[j].vy;
@@ -45,6 +66,12 @@ $(document).ready(function() {
       if (balls[j].yCoor < 20)
       {
         balls[j].vy = -balls[j].vy
+      }
+    }
+
+    for (var x = 0; x<reactions.length; x++) {
+      if (reactions[x].radius < 30) {
+        reactions[x].radius++;
       }
     }
     context.fillStyle = 'white';
@@ -79,7 +106,7 @@ $(document).ready(function() {
     var newReaction = {
       xCoor:x,
       yCoor:y,
-      radius:30,
+      radius:1,
       color: "green"
     };
     reactions.push(newReaction);
