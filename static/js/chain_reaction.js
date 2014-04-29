@@ -20,6 +20,10 @@ $(document).ready(function() {
   }
   //alert(balls.length);
 
+  var reactions = [];
+
+
+
   // Run an interation of the game
   var updateGame = function() {
     // PUT STUFF HERE
@@ -54,6 +58,14 @@ $(document).ready(function() {
       context.closePath();
       context.stroke();
     }
+    for (var n = 0; n<reactions.length; n++) {
+      context.beginPath();
+      context.arc(reactions[n].xCoor, reactions[n].yCoor, reactions[n].radius ,0,2*Math.PI);
+      context.fillStyle = reactions[n].color;
+      context.fill();
+      context.closePath();
+      context.stroke();
+    }
     requestAnimationFrame(updateGame);     
   };
 
@@ -64,16 +76,16 @@ $(document).ready(function() {
     var x = e.pageX - $(this).offset().left;
     var y = e.pageY - $(this).offset().top;
     // PUT STUFF HERE
-    var newball = {
+    var newReaction = {
       xCoor:x,
       yCoor:y,
-      radius:15,
-      vx:10*Math.random(),
-      vy:15*Math.random()
+      radius:30,
+      color: "green"
     };
-    balls.push(newball);
-    numBalls++;
+    reactions.push(newReaction);
+    //balls.push(newball);
+    //numBalls++;
   });
-  
+
   updateGame();
 });
