@@ -2,6 +2,14 @@ var express = require("express");
 var ejs = require("ejs");
 var app = express();
 
+var randFriendName = ["HuanHuan", "WangWang", "Aoyi", "Danish", "JunJun"];
+var randAdj = ["bloody", "nerdy", "geeky", "cute", "alogical", "reasonable", "lovely", "big-dick"];
+var randVerb = ["accepts", "admires", "loves", "eats", "fucks", "begs for", "bluffs in front of", "argue with"];
+var randAnimal = ["crocdile", "mountain lion", "giraffe", "octopus", "platypus", "rhinoceros", "chimpanzee"];
+var randNum = function(length) {
+	return Math.floor(Math.random()*length);
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////
 // APP CONFIGURATION                                                         //
@@ -55,10 +63,14 @@ app.get('/chain-reaction', function(req, res) {
 });
 
 app.get('/random_fact', function(req, res) {
-	res.render('fact.html', {friend_name: "HuanHuan",
-							 adjective: "nerdy",
-							 verb: "fucks",
-							 animal_name: "mountain lion"});
+	res.render('fact.html', {friend_name: randFriendName[randNum(randFriendName.length)],
+							 adjective: randAdj[randNum(randAdj.length)],
+							 verb: randVerb[randNum(randVerb.length)],
+							 animal_name: randAnimal[randNum(randAnimal.length)]});
+});
+
+app.get('/facts', function(req, res) {
+	res.render('facts.html', { });
 });
 
 ///////////////////////////////////////////////////////////////////////////////
