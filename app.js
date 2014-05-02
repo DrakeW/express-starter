@@ -54,6 +54,13 @@ app.get('/chain-reaction', function(req, res) {
 	res.render('chain_reaction.html', { });
 });
 
+app.get('/random_fact', function(req, res) {
+	res.render('fact.html', {friend_name: "HuanHuan",
+							 adjective: "nerdy",
+							 verb: "fucks",
+							 animal_name: "mountain lion"});
+});
+
 ///////////////////////////////////////////////////////////////////////////////
 // RUN CONFIGURATION                                                         //
 ///////////////////////////////////////////////////////////////////////////////
